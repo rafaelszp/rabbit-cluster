@@ -1,1 +1,1 @@
-https://www.rabbitmq.com/tutorials/tutorial-three-java.html
+https://www.rabbitmq.com/tutorials/tutorial-six-java.html
