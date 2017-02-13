@@ -1,6 +1,7 @@
 package szp.rafael.rabbitcluster.simplerabbitmqclient.queue;
 
 import com.rabbitmq.client.*;
+import szp.rafael.rabbitcluster.simplerabbitmqclient.api.AbstractSimpleRMQ;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -8,15 +9,9 @@ import java.util.concurrent.TimeoutException;
 /**
  * Created by rafael on 2/10/17.
  */
-public class MessageQConsumer {
+public class MessageQConsumer extends AbstractSimpleRMQ {
 
-  public static final String RABBITMQ_SERVER_HOST = "localhost";
   private static final String QUEUE_NAME = "simple-queue";
-  private static final String USERNAME = "user";
-  private static final String PASSWORD = "password";
-  private static ConnectionFactory factory;
-  private static Connection connection;
-  private static Channel channel;
 
   public static void main(String... args) throws IOException, TimeoutException {
 
@@ -36,21 +31,5 @@ public class MessageQConsumer {
 	};
 	channel.basicConsume(QUEUE_NAME, true, consumer);
   }
-
-
-  private static void initConnection() throws IOException, TimeoutException {
-	factory = new ConnectionFactory();
-	factory.setHost(RABBITMQ_SERVER_HOST);
-	factory.setUsername(USERNAME);
-	factory.setPassword(PASSWORD);
-	connection = factory.newConnection();
-	channel = connection.createChannel();
-  }
-
-  private static void endConnection() throws IOException, TimeoutException {
-	channel.close();
-	connection.close();
-  }
-
 
 }
