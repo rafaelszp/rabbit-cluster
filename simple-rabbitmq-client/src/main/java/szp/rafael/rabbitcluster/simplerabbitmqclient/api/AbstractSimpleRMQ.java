@@ -30,7 +30,7 @@ public abstract class AbstractSimpleRMQ {
 	channel = connection.createChannel();
   }
 
-  protected static void endConnection() throws IOException, TimeoutException {
+  public static void endConnection() throws IOException, TimeoutException {
 	channel.close();
 	connection.close();
   }

@@ -1,4 +1,4 @@
-package szp.rafael.rabbitcluster.simplerabbitmqclient.queue;
+package szp.rafael.rabbitcluster.simplerabbitmqclient.queue.direct;
 
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
