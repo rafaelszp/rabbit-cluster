@@ -1,1 +1,0 @@
-https://www.rabbitmq.com/tutorials/tutorial-six-java.html

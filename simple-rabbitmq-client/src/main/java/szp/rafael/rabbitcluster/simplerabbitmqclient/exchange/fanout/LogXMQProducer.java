@@ -10,7 +10,7 @@ import java.util.Random;
 public class LogXMQProducer extends AbstractSimpleRMQ {
 
   private static final String EXCHANGE_NAME = "logs";
-  public static final int MESSAGE_COUNT = 1000000;
+  public static final int MESSAGE_COUNT = 12_000;
 
   public static void main(String... args) throws Exception{
     initConnection();
