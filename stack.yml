@@ -1,0 +1,39 @@
+version: '3'
+services:
+  rabbitmq:
+    image: bijukunjummen/rabbitmq-server:3.6.5
+    hostname: "rabbitmq"
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "25672:25672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+      - RABBITMQ_ERLANG_COOKIE=XLULOMTXWOARNNEPCFLC
+    volumes:
+      - "$PWD/config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config"
+      - "/home/rafael/tmp/rb:/var/lib/rabbitmq"
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+
+#  rabbit-ram-01:
+#    image: bijukunjummen/rabbitmq-server:3.6.5
+#    hostname: "rabbit-ram-01"
+#    environment:
+#      - CLUSTERED=true
+#      - CLUSTER_WITH=rabbitmq
+#      - RAM_NODE=true
+#      - RABBITMQ_ERLANG_COOKIE=XLULOMTXWOARNNEPCFLC
+#      - VAR_AMBIENT_TESTE=true
+#    deploy:
+#      replicas: 1
+#      placement:
+#        constraints:
+#          - node.role == worker
+

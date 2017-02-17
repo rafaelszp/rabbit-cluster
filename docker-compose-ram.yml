@@ -1,11 +1,9 @@
 version: '3'
 services: 
-  rabbit-disk:
-    container_name: rabbit-disk
-#    command: "rabbitmq-server"
-#    image: rabbitmq:3-management
+  rabbit-ram:
+    container_name: rabbit-ram
+    hostname: rabbit-ram
     image: bijukunjummen/rabbitmq-server:3.6.5
-    hostname: rabbit-disk
     ports:
       - "4369:4369"
       - "5671:5671" 
@@ -13,8 +11,10 @@ services:
       - "25672:25672"
       - "15672:15672"
     environment: 
-      - RABBITMQ_DEFAULT_USER=user
-      - RABBITMQ_DEFAULT_PASS=password
-      - RABBITMQ_ERLANG_COOKIE=XLULOMTXWOARNNEPCFLC
+#      - RABBITMQ_DEFAULT_USER=user
+#      - RABBITMQ_DEFAULT_PASS=password
+      - CLUSTERED=true
+      - CLUSTER_WITH=rabbitmq
+      - RAM_NODE=true
 #    volumes:
 #      - "$PWD/config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:rw"
