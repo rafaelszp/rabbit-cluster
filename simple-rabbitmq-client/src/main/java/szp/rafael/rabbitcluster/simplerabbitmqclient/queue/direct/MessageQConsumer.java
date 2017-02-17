@@ -4,6 +4,8 @@ import com.rabbitmq.client.*;
 import szp.rafael.rabbitcluster.simplerabbitmqclient.api.AbstractSimpleRMQ;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -17,7 +19,9 @@ public class MessageQConsumer extends AbstractSimpleRMQ {
 
 	initConnection();
 	boolean durable = true;
-	channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
+	Map<String, Object> map = new HashMap<>();
+	map.put("x-ha-policy","all");
+	channel.queueDeclare(QUEUE_NAME, durable, false, false, map);
 	System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
 	Consumer consumer = new DefaultConsumer(channel) {
