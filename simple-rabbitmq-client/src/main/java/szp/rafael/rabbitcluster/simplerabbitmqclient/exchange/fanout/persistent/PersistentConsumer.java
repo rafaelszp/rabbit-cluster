@@ -34,7 +34,7 @@ public class PersistentConsumer extends AbstractSimpleRMQ{
 	Consumer consumer = new DefaultConsumer(channel){
 	  @Override
 	  public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-		String message = new String(body,"UTF-8");
+		String message = new String(body,"UTF-8").substring(1,100);
 		System.out.printf("\nReceived message {%s}",message);
 	  }
 	};
