@@ -14,7 +14,10 @@ services:
 #      - RABBITMQ_DEFAULT_USER=user
 #      - RABBITMQ_DEFAULT_PASS=password
       - CLUSTERED=true
-      - CLUSTER_WITH=rabbitmq
+      - CLUSTER_WITH=rabbit-disk
       - RAM_NODE=true
+#      - RABBITMQ_USE_LONGNAME=true
+    extra_hosts:
+      - "rabbit-disk:10.21.6.45"
 #    volumes:
 #      - "$PWD/config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:rw"
