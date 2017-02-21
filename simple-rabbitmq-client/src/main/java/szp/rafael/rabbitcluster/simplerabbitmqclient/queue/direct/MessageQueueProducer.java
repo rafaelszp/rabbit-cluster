@@ -5,6 +5,8 @@ import com.rabbitmq.client.MessageProperties;
 import szp.rafael.rabbitcluster.simplerabbitmqclient.api.AbstractSimpleRMQ;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -19,7 +21,7 @@ public class MessageQueueProducer extends AbstractSimpleRMQ{
 	initConnection();
 
     Long start = System.currentTimeMillis();
-    long count=10000L;
+    long count=1_000_000L;
 	for(long i = 0; i<count; i++) {
 	  sendMessage(i);
 	}
@@ -32,7 +34,9 @@ public class MessageQueueProducer extends AbstractSimpleRMQ{
 
   private static void sendMessage(long id) throws IOException {
 	boolean durable = true; //allow recovery after restart or crash
-	channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
+	Map<String, Object> map = new HashMap<>();
+	map.put("x-ha-policy","all");
+	channel.queueDeclare(QUEUE_NAME, durable, false, false, map);
 	String message = "Hello World - "+id;
 	channel.basicPublish(
 			"", //exchange name - blank means default exchange

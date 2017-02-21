@@ -15,6 +15,7 @@ services:
 #      - RABBITMQ_DEFAULT_PASS=password
       - CLUSTERED=true
       - CLUSTER_WITH=rabbit-disk
+      - RABBITMQ_USE_LONGNAME=true
       - RAM_NODE=true
 #      - RABBITMQ_USE_LONGNAME=true
     extra_hosts:
