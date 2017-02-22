@@ -1,7 +1,7 @@
 charge_simulator:
 environments:
 
-  financeiro:
+  financial:
 
     cbc_producer:
       - Send charges - Send random charges every 1s
@@ -29,11 +29,11 @@ environments:
 
   consumers:
     cbc_consumer_goias:
-      consome: q_cbc_goias
-      publica: q_cbc_processed
+      consume_from: q_cbc_goias
+      publish_on: q_cbc_processed
     cbc_consumer_tocantins:
-      consome: q_cbc_tocantins
-      publica: q_cbc_processed
+      consume_from: q_cbc_tocantins
+      publish_on: q_cbc_processed
     
 
 

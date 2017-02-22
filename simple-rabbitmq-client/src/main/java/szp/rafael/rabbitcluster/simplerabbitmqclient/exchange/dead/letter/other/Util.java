@@ -3,7 +3,6 @@ package szp.rafael.rabbitcluster.simplerabbitmqclient.exchange.dead.letter.other
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import rmqexample.Constants;
 
 import java.io.IOException;
 import java.util.HashMap;
