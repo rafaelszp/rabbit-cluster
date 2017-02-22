@@ -12,8 +12,8 @@ import java.util.concurrent.TimeoutException;
  */
 public abstract class AbstractSimpleRMQ {
 
-//  protected static final String RABBITMQ_SERVER_HOST = "localhost";
-  protected static final String RABBITMQ_SERVER_HOST = "10.21.6.136";
+  protected static final String RABBITMQ_SERVER_HOST = "localhost";
+//  protected static final String RABBITMQ_SERVER_HOST = "10.21.6.136";
 //
   protected static final String USERNAME = "user";
   protected static final String PASSWORD = "password";
@@ -35,4 +35,11 @@ public abstract class AbstractSimpleRMQ {
 	channel.close();
 	connection.close();
   }
+
+  public static long getPID() {
+	String processName =
+			java.lang.management.ManagementFactory.getRuntimeMXBean().getName();
+	return Long.parseLong(processName.split("@")[0]);
+  }
+
 }
