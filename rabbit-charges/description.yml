@@ -1,0 +1,42 @@
+charge_simulator:
+environments:
+
+  financeiro:
+
+    cbc_producer:
+      - Send charges - Send random charges every 1s
+      - Record errors - Failed charges are recorded in log files
+      - Read log error and resend them, if sucessful remove charges from log file
+    cbc_consumer_processed:
+      - Consome charges cbc_consumer_processed
+      - Record processed charges in log file
+
+  rabbit:
+    exchanges:
+      x_cbc:
+        tipo: topic       
+    queues: 
+      q_cbc_goias:
+        binding: x_cbc
+        routing_key: company.cbc.goias
+        durable: true
+      q_cbc_tocantins:
+        binding: x_cbc
+        routing_key: company.cbc.tocantins
+        durable: true
+      q_cbc_processed:
+        durable: true
+
+  consumers:
+    cbc_consumer_goias:
+      consome: q_cbc_goias
+      publica: q_cbc_processed
+    cbc_consumer_tocantins:
+      consome: q_cbc_tocantins
+      publica: q_cbc_processed
+    
+
+
+
+
+
