@@ -43,7 +43,7 @@ public class RabbitFactory {
 
 	HashMap<String, Object> qcbcArguments = new HashMap<>();
 	HashMap<String, Object> qcbcTmpArguments = new HashMap<>();
-	qcbcTmpArguments.put("x-message-ttl", 60_000);
+	qcbcTmpArguments.put("x-message-ttl", 86_400_000);
 
 	channel.exchangeDeclare(X_CBC,EXCHANGE_TYPE,true);
 

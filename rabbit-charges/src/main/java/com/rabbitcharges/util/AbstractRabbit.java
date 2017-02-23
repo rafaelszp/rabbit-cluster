@@ -33,4 +33,15 @@ public class AbstractRabbit {
   public Connection getConnection() {
 	return connection;
   }
+
+  public void close(){
+	try {
+	  connection.close();
+	  channel.close();
+	} catch (IOException e) {
+	  e.printStackTrace();
+	} catch (TimeoutException e) {
+	  e.printStackTrace();
+	}
+  }
 }
