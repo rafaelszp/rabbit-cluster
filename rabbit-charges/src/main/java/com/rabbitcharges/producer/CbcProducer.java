@@ -29,7 +29,6 @@ public class CbcProducer extends AbstractRabbit{
 	  JSONWriter jsonWriter = new JSONWriter();
 
 	  for(;;){
-
 	    String company = companies[new Random().nextInt(2)];
 	    Long contId = new Random().nextLong();
 		double v = new Random().nextDouble() * contId;

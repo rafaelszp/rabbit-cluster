@@ -50,6 +50,7 @@ public class RabbitFactory {
 	channel.queueDeclare(Q_CBC_GOIAS,true,false,false,qcbcArguments);
 	channel.queueDeclare(Q_CBC_TOCANTINS,true,false,false,qcbcArguments);
 	channel.queueDeclare(Q_CBC_TMP,true,false,false,qcbcTmpArguments);
+	channel.queueDeclare(Q_CBC_PROCESSED,true,false,false,null);
 
 	channel.queueBind(Q_CBC_GOIAS,X_CBC,"company.cbc.goias");
 	channel.queueBind(Q_CBC_TOCANTINS,X_CBC,"company.cbc.tocantins");
