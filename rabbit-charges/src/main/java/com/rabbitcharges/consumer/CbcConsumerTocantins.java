@@ -22,7 +22,7 @@ public class CbcConsumerTocantins {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String message = new String(body,"UTF-8");
-                System.out.printf(message);
+                System.out.printf("%s\n",message);
                 getChannel().basicAck(envelope.getDeliveryTag(),true);
                 getChannel().basicPublish("","q_cbc_processed", null, body);
             }

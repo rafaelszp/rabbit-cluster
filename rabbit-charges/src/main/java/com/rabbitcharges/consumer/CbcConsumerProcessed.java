@@ -23,11 +23,15 @@ public class CbcConsumerProcessed {
         factory.setPassword("password");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
+        try {
+            Files.newBufferedWriter(Paths.get("processed.log"), StandardOpenOption.CREATE_NEW);
+        } catch (IOException e) {
+        }
         Consumer consumer = new DefaultConsumer(channel){
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String message = new String(body,"UTF-8");
-                Path path = Paths.get("/home/igor/temp/processed.log");
+                Path path = Paths.get("processed.log");
                 try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
                     writer.write(message);
                     writer.newLine();
