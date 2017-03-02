@@ -27,6 +27,7 @@ public abstract class AbstractSimpleRMQ {
 	factory.setHost(RABBITMQ_SERVER_HOST);
 	factory.setUsername(USERNAME);
 	factory.setPassword(PASSWORD);
+	factory.setPort(5000);
 	connection = factory.newConnection();
 	channel = connection.createChannel();
   }

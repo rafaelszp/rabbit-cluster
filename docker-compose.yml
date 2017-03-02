@@ -8,7 +8,7 @@ services:
     hostname: rabbit-disk
     ports:
       - "4369:4369"
-      - "5671:5671" 
+      - "5671:5671"
       - "5672:5672"
       - "25672:25672"
       - "15672:15672"
@@ -19,3 +19,17 @@ services:
       - HOSTNAME=rabbit-disk
 #    volumes:
 #      - "$PWD/config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:rw"
+
+  rabbit-haproxy:
+    container_name: rabbit-haproxy
+    image: haproxy:1.4.27
+    depends_on: [rabbit-disk]
+    command: "haproxy -f /usr/local/etc/haproxy/haproxy.cfg"
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+      - "1936:1936"
+    links:
+      - rabbit-disk
+    volumes:
+      - "$PWD/ha-proxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:rw"
