@@ -22,7 +22,8 @@ services:
 
   rabbit-haproxy:
     container_name: rabbit-haproxy
-    image: haproxy:1.4.27
+    image: rafpe/docker-haproxy-rsyslog
+#    image: haproxy:1.4.27
     depends_on: [rabbit-disk]
     command: "haproxy -f /usr/local/etc/haproxy/haproxy.cfg"
     ports:
