@@ -5,18 +5,18 @@ package szp.rafael.rabbitcluster.simplerabbitmqclient.api;
  */
 public enum AMQArguments {
 
-    X_DEAD_LETTER_EXCHANGE("x-dead-letter-exchange"),
-    X_MAX_LENGTH("x-max-length"),
-    X_MESSAGE_TTL("x-message-ttl");
+  X_DEAD_LETTER_EXCHANGE("x-dead-letter-exchange"),
+  X_MAX_LENGTH("x-max-length"),
+  X_MESSAGE_TTL("x-message-ttl");
 
 
-    private String property;
+  private String property;
 
-    private AMQArguments(String property){
-        this.property = property;
-    }
+  private AMQArguments(String property) {
+    this.property = property;
+  }
 
-    public String getProperty() {
-        return property;
-    }
+  public String getProperty() {
+    return property;
+  }
 }

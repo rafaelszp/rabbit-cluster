@@ -1,6 +1,5 @@
 package szp.rafael.rabbitcluster.simplerabbitmqclient.exchange.dead.letter.other;
 
-import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.MessageProperties;
 
 import java.io.IOException;
@@ -13,22 +12,21 @@ import java.util.concurrent.TimeoutException;
 public class DateTimeProducer extends AbstractOtherSample {
 
 
-
   public static void main(String... args) throws IOException, TimeoutException, InterruptedException {
 
-	DateTimeProducer dateTimeProducer = new DateTimeProducer();
+    DateTimeProducer dateTimeProducer = new DateTimeProducer();
 
 
-    for(;;){
-	  LocalDateTime now = LocalDateTime.now();
-	  String message = now.toString();
-	  if(System.currentTimeMillis()%3==0){
-	    message = "requeue";
-	  }
-	  dateTimeProducer.getChannel()
-			  .basicPublish(Util.EXCHANGE_NAME,"", MessageProperties.PERSISTENT_TEXT_PLAIN,message.getBytes("UTF-8"));
-	  Thread.sleep(1000L);
-	}
+    for (; ; ) {
+      LocalDateTime now = LocalDateTime.now();
+      String message = now.toString();
+      if (System.currentTimeMillis() % 3 == 0) {
+        message = "requeue";
+      }
+      dateTimeProducer.getChannel()
+              .basicPublish(Util.EXCHANGE_NAME, "", MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
+      Thread.sleep(1000L);
+    }
 
   }
 
